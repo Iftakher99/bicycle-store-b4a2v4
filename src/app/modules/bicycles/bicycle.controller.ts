@@ -12,10 +12,11 @@ const createBicycle = async (req: Request, res: Response) => {
       message: 'Bicycle is Created SuccessFully',
       data: result,
     });
-  } catch (error) {
+  } catch (error: any) {
     res.status(500).json({
-      success: false,
       message: 'An error occurred while creating Bicycle',
+      success: false,
+      error,
     });
   }
 };
@@ -23,8 +24,8 @@ const getBicycles = async (req: Request, res: Response) => {
   try {
     const result = await BicycleServices.getAllBicycleFromDB();
     res.status(200).json({
-      success: true,
       message: 'All Bicycles Retrieved Successfully',
+      success: true,
       data: result,
     });
   } catch (error) {

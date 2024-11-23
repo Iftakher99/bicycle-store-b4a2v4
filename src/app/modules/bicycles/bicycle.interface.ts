@@ -1,28 +1,17 @@
 // Define the interface for our bicycle
 
-export enum TBrand {
-  Duranta = 'Duranta',
-  Veloce = 'Veloce',
-  Phoenix = 'Phoenix',
-  Adder = 'Adder',
-  Akij = 'Akij',
-  Diamondback = 'Diamondback',
-  Hero = 'Hero',
-  Camp = 'Camp',
-  Core = 'Core',
-  SpeedX = 'SpeedX',
-}
 export enum TCycleType {
   Road = 'Road',
   Mountain = 'Mountain',
   Hybrid = 'Hybrid',
   Cruiser = 'Cruiser',
   Electric = 'Electric',
+  BMX = 'BMX',
 }
 
 export interface TBicycle {
   name: string;
-  brand: TBrand;
+  brand: string;
   price: number;
   type: TCycleType;
   description: string;
