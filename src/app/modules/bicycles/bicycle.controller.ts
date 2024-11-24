@@ -7,13 +7,13 @@ const createBicycle = async (req: Request, res: Response) => {
     const result = await BicycleServices.createBicycleIntoDB(bicycle);
     res.status(200).json({
       message: 'Bicycle is Created SuccessFully',
-      success: true,
+      status: true,
       data: result,
     });
   } catch (error: any) {
     res.status(500).json({
       message: 'An error occurred while creating Bicycle',
-      success: false,
+      status: false,
       error: error.errors,
       stack: error.stack,
     });
@@ -30,18 +30,18 @@ const getBicycles = async (req: Request, res: Response) => {
     }
     res.status(200).json({
       message: `${result.length} Bicycles Retrieved Successfully`,
-      success: true,
+      status: true,
       data: result,
     });
   } catch (error: any) {
     if (error.message === 'No Bicycle found by your search term') {
       res.status(404).json({
-        success: false,
+        status: false,
         message: error.message,
       });
     } else {
       res.status(500).json({
-        success: false,
+        status: false,
         message: 'An error occurred while getting Bicycle',
       });
     }
@@ -54,12 +54,12 @@ const getSingleBicycle = async (req: Request, res: Response) => {
     const result = await BicycleServices.getSingleBicycleFromDB(productId);
     res.status(200).json({
       message: ' Bicycle Retrieved Successfully',
-      success: true,
+      status: true,
       data: result,
     });
   } catch (error) {
     res.status(500).json({
-      success: false,
+      status: false,
       message: 'An error occurred while getting single Bicycle',
       error,
     });
@@ -72,12 +72,12 @@ const updateBicycle = async (req: Request, res: Response) => {
     const result = await BicycleServices.updateBicycle(productId, bicycle);
     res.status(200).json({
       message: ' Bicycle Updated Successfully',
-      success: true,
+      status: true,
       data: result,
     });
   } catch (error: any) {
     res.status(500).json({
-      success: false,
+      status: false,
       message: 'An error occurred while updating Bicycle',
       error,
     });
@@ -90,12 +90,12 @@ const deleteBicycle = async (req: Request, res: Response) => {
     await BicycleServices.deleteBicycle(productId);
     res.status(200).json({
       message: ' Bicycle deleted Successfully',
-      success: true,
+      status: true,
       data: {},
     });
   } catch (error) {
     res.status(500).json({
-      success: false,
+      status: false,
       message: 'An error occurred while deleting Bicycle',
       error,
     });

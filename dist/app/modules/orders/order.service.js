@@ -23,6 +23,9 @@ const getRevenueFromOrders = () => __awaiter(void 0, void 0, void 0, function* (
                 totalRevenue: { $sum: '$totalPrice' },
             },
         },
+        {
+            $project: { _id: 0, totalRevenue: 1 },
+        },
     ]);
     return result;
 });

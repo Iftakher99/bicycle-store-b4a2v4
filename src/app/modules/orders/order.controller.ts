@@ -15,14 +15,14 @@ const createAnOrderInDB = async (req: Request, res: Response) => {
 
     if (!bicycle) {
       res.status(404).json({
-        success: false,
+        status: false,
         message: 'Bicycle not found',
       });
       return;
     }
     if (bicycle.quantity < orderedQuantity) {
       res.status(400).json({
-        success: false,
+        status: false,
         message: 'Insufficient stock to fulfill the order',
       });
       return;
@@ -36,14 +36,14 @@ const createAnOrderInDB = async (req: Request, res: Response) => {
     } as TBicycle);
 
     res.status(200).json({
-      success: true,
+      status: true,
       message: 'Order is Created SuccessFully',
       data: result,
     });
   } catch (error) {
     res.status(500).json({
       message: 'An error occurred while creating an Order',
-      success: false,
+      status: false,
       error,
     });
   }
@@ -55,13 +55,13 @@ const getRevenueFromOrders = async (req: Request, res: Response) => {
     if (!revenue) {
       res.status(404).json({
         message: 'No revenue data found',
-        success: false,
+        status: false,
       });
       return;
     } // Send the response with the total revenue
     res.status(200).json({
       message: 'Revenue calculated successfully',
-      success: true,
+      status: true,
       data: {
         totalRevenue: revenue,
       },
@@ -69,7 +69,7 @@ const getRevenueFromOrders = async (req: Request, res: Response) => {
   } catch (error: any) {
     res.status(500).json({
       message: 'An error occurred while calculating the revenue from orders',
-      success: false,
+      status: false,
       error: error.message,
     });
   }

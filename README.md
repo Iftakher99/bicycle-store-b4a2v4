@@ -44,9 +44,11 @@ MONGO_URI=your mongodb uri
 4. Start the server:
 
 ```
-yarn start:dev
+yarn start:dev  // to run locally
 
 ```
+
+. watch other scripts from package.json
 
 - Access the API at http://localhost:5000.
 

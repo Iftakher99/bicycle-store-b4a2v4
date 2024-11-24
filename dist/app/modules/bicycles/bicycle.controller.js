@@ -17,14 +17,14 @@ const createBicycle = (req, res) => __awaiter(void 0, void 0, void 0, function* 
         const result = yield bicycle_service_1.BicycleServices.createBicycleIntoDB(bicycle);
         res.status(200).json({
             message: 'Bicycle is Created SuccessFully',
-            success: true,
+            status: true,
             data: result,
         });
     }
     catch (error) {
         res.status(500).json({
             message: 'An error occurred while creating Bicycle',
-            success: false,
+            status: false,
             error: error.errors,
             stack: error.stack,
         });
@@ -39,20 +39,20 @@ const getBicycles = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
         }
         res.status(200).json({
             message: `${result.length} Bicycles Retrieved Successfully`,
-            success: true,
+            status: true,
             data: result,
         });
     }
     catch (error) {
         if (error.message === 'No Bicycle found by your search term') {
             res.status(404).json({
-                success: false,
+                status: false,
                 message: error.message,
             });
         }
         else {
             res.status(500).json({
-                success: false,
+                status: false,
                 message: 'An error occurred while getting Bicycle',
             });
         }
@@ -64,13 +64,13 @@ const getSingleBicycle = (req, res) => __awaiter(void 0, void 0, void 0, functio
         const result = yield bicycle_service_1.BicycleServices.getSingleBicycleFromDB(productId);
         res.status(200).json({
             message: ' Bicycle Retrieved Successfully',
-            success: true,
+            status: true,
             data: result,
         });
     }
     catch (error) {
         res.status(500).json({
-            success: false,
+            status: false,
             message: 'An error occurred while getting single Bicycle',
             error,
         });
@@ -83,13 +83,13 @@ const updateBicycle = (req, res) => __awaiter(void 0, void 0, void 0, function* 
         const result = yield bicycle_service_1.BicycleServices.updateBicycle(productId, bicycle);
         res.status(200).json({
             message: ' Bicycle Updated Successfully',
-            success: true,
+            status: true,
             data: result,
         });
     }
     catch (error) {
         res.status(500).json({
-            success: false,
+            status: false,
             message: 'An error occurred while updating Bicycle',
             error,
         });
@@ -101,13 +101,13 @@ const deleteBicycle = (req, res) => __awaiter(void 0, void 0, void 0, function* 
         yield bicycle_service_1.BicycleServices.deleteBicycle(productId);
         res.status(200).json({
             message: ' Bicycle deleted Successfully',
-            success: true,
+            status: true,
             data: {},
         });
     }
     catch (error) {
         res.status(500).json({
-            success: false,
+            status: false,
             message: 'An error occurred while deleting Bicycle',
             error,
         });
