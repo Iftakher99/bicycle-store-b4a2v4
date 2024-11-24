@@ -29,7 +29,7 @@ const getBicycles = async (req: Request, res: Response) => {
       throw new Error('No Bicycle found by your search term');
     }
     res.status(200).json({
-      message: `${result.length} Bicycles Retrieved Successfully`,
+      message: 'Bicycles Retrieved Successfully',
       status: true,
       data: result,
     });
