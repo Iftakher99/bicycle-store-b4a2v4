@@ -38,7 +38,7 @@ const getBicycles = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
             throw new Error('No Bicycle found by your search term');
         }
         res.status(200).json({
-            message: `${result.length} Bicycles Retrieved Successfully`,
+            message: 'Bicycles Retrieved Successfully',
             status: true,
             data: result,
         });
