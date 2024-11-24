@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 // Define the interface for our bicycle
 
 export enum TCycleType {

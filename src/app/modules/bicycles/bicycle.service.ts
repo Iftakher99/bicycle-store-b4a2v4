@@ -6,9 +6,23 @@ const createBicycleIntoDB = async (bicycle: TBicycle) => {
   return result;
 };
 
-const getAllBicycleFromDB = async () => {
-  const result = await BicycleModel.find();
-  return result;
+const getAllBicycleFromDB = async (searchTerm?: string) => {
+  try {
+    const filter = searchTerm
+      ? {
+          $or: [
+            { name: { $regex: searchTerm, $options: 'i' } },
+            { brand: { $regex: searchTerm, $options: 'i' } },
+            { type: { $regex: searchTerm, $options: 'i' } },
+          ],
+        }
+      : {};
+
+    const bicycles = await BicycleModel.find(filter);
+    return bicycles;
+  } catch (error: any) {
+    throw new Error('Failed to retrieve bicycles: ' + error.message);
+  }
 };
 
 const getSingleBicycleFromDB = async (id: string) => {

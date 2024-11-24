@@ -1,8 +1,8 @@
-import { Types } from 'mongoose';
+import mongoose from 'mongoose';
 
 export interface TOrder {
   email: string;
-  product: Types.ObjectId;
+  product: mongoose.Types.ObjectId;
   quantity: number;
   totalPrice: number;
 }

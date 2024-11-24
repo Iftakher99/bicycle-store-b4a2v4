@@ -1,4 +1,4 @@
-import mongoose, { model, Schema } from 'mongoose';
+import { model, Schema } from 'mongoose';
 import { TBicycle, TCycleType } from './bicycle.interface';
 
 const bicycleSchema = new Schema<TBicycle>(
@@ -6,14 +6,17 @@ const bicycleSchema = new Schema<TBicycle>(
     name: {
       type: String,
       required: [true, 'The bicycle name is required.'],
+      trim: true,
     },
     brand: {
       type: String,
       required: [true, 'The bicycle brand is required.'],
+      trim: true,
     },
     price: {
       type: Number,
       required: [true, 'The bicycle price is required.'],
+      min: [0, 'Price must be a positive number'],
     },
     type: {
       type: String,
@@ -30,6 +33,7 @@ const bicycleSchema = new Schema<TBicycle>(
     quantity: {
       type: Number,
       required: [true, 'The bicycle quantity is required.'],
+      min: [1, 'Quantity must be a positive number'],
     },
     inStock: {
       type: Boolean,
@@ -38,6 +42,7 @@ const bicycleSchema = new Schema<TBicycle>(
   },
   {
     timestamps: true,
+    versionKey: false,
   },
 );
 
